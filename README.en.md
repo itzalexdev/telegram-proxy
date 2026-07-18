@@ -21,7 +21,14 @@ The application prepares direct connections to Telegram's primary data centers i
 
 ## Architecture
 
-![Telegram Proxy architecture diagram](docs/architecture-en.png)
+```mermaid
+flowchart LR
+    Desktop["Telegram Desktop"] --> Proxy["Local Telegram Proxy<br/>127.0.0.1:15444"]
+    Proxy --> Direct["Direct WSS route"]
+    Proxy -.-> Fallback["Fallback WSS route"]
+    Direct --> Telegram["Telegram data centers"]
+    Fallback --> Telegram
+```
 
 Most traffic is routed directly to Telegram infrastructure. Fallback WSS endpoints are used only when a direct connection cannot be established.
 
@@ -70,9 +77,6 @@ Latency and availability depend on your ISP, region, and current network routing
 
 ```text
 telegram-proxy/
-├── docs/
-│   ├── architecture-en.png
-│   └── architecture-ru.png
 ├── src/
 │   ├── main.c
 │   └── telegram-proxy.exe
@@ -85,8 +89,6 @@ telegram-proxy/
 
 | File | Purpose |
 | --- | --- |
-| `docs/architecture-en.png` | traffic flow and routing architecture diagram in English |
-| `docs/architecture-ru.png` | traffic flow and routing architecture diagram in Russian |
 | `telegram.bat` | starts the proxy and opens the proxy settings in Telegram Desktop |
 | `stop.bat` | stops the local proxy process |
 | `src/telegram-proxy.exe` | ready-to-run application for Windows x64 |
