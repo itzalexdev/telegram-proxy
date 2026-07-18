@@ -21,17 +21,7 @@ Telegram Proxy создаёт локальную точку подключени
 
 ## Архитектура
 
-```text
-Telegram Desktop
-       |
-       | MTProto, 127.0.0.1:15444
-       v
-Telegram Proxy
-       |
-       | WSS / TLS
-       v
-Telegram infrastructure
-```
+![Схема архитектуры Telegram Proxy](docs/architecture-ru.png)
 
 Основной трафик направляется напрямую к инфраструктуре Telegram. Резервные WSS-адреса задействуются только при невозможности установить прямое соединение.
 
@@ -80,6 +70,9 @@ src\telegram-proxy.exe --port 15444 --log
 
 ```text
 telegram-proxy/
+├── docs/
+│   ├── architecture-en.png
+│   └── architecture-ru.png
 ├── src/
 │   ├── main.c
 │   └── telegram-proxy.exe
@@ -92,6 +85,8 @@ telegram-proxy/
 
 | Файл | Назначение |
 | --- | --- |
+| `docs/architecture-ru.png` | схема архитектуры и маршрутизации на русском языке |
+| `docs/architecture-en.png` | схема архитектуры и маршрутизации на английском языке |
 | `telegram.bat` | запуск прокси и открытие параметров Telegram Desktop |
 | `stop.bat` | остановка локального процесса |
 | `src/telegram-proxy.exe` | готовое приложение для Windows x64 |
