@@ -21,13 +21,16 @@ Telegram Proxy создаёт локальную точку подключени
 
 ## Архитектура
 
-```mermaid
-flowchart LR
-    Desktop["Telegram Desktop"] --> Proxy["Локальный Telegram Proxy<br/>127.0.0.1:15444"]
-    Proxy --> Direct["Прямой WSS-маршрут"]
-    Proxy -.-> Fallback["Резервный WSS-маршрут"]
-    Direct --> Telegram["Дата-центры Telegram"]
-    Fallback --> Telegram
+```text
+Telegram Desktop
+       |
+       | MTProto, 127.0.0.1:15444
+       v
+Telegram Proxy
+       |
+       | WSS / TLS
+       v
+Telegram infrastructure
 ```
 
 Основной трафик направляется напрямую к инфраструктуре Telegram. Резервные WSS-адреса задействуются только при невозможности установить прямое соединение.

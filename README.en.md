@@ -21,13 +21,16 @@ The application prepares direct connections to Telegram's primary data centers i
 
 ## Architecture
 
-```mermaid
-flowchart LR
-    Desktop["Telegram Desktop"] --> Proxy["Local Telegram Proxy<br/>127.0.0.1:15444"]
-    Proxy --> Direct["Direct WSS route"]
-    Proxy -.-> Fallback["Fallback WSS route"]
-    Direct --> Telegram["Telegram data centers"]
-    Fallback --> Telegram
+```text
+Telegram Desktop
+       |
+       | MTProto, 127.0.0.1:15444
+       v
+Telegram Proxy
+       |
+       | WSS / TLS
+       v
+Telegram infrastructure
 ```
 
 Most traffic is routed directly to Telegram infrastructure. Fallback WSS endpoints are used only when a direct connection cannot be established.
