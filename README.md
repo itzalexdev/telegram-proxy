@@ -4,6 +4,8 @@
 
 Локальный MTProto/WSS-прокси для Telegram Desktop на Windows
 
+[**Русский**](README.md) | [English](README.en.md)
+
 ![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?style=flat-square)
 ![Architecture](https://img.shields.io/badge/architecture-x64-555555?style=flat-square)
 ![Transport](https://img.shields.io/badge/transport-MTProto%20%2B%20WSS-26A5E4?style=flat-square)
@@ -83,6 +85,7 @@ telegram-proxy/
 │   └── telegram-proxy.exe
 ├── LICENSE.txt
 ├── README.md
+├── README.en.md
 ├── stop.bat
 └── telegram.bat
 ```
